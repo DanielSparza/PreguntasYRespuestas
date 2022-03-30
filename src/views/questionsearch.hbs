@@ -1,0 +1,62 @@
+{{#if user}}  {{!-- MUESTRA LA INFORMACIÓN DETALLADA DE LA PREGUNTA Y MUESTRA LAS CALIFICACIONES DE LAS RESPUESTAS DEPENDIENDO DEL USUARIO --}}
+{{> searchfilter}}
+<div class="container questions-cont">
+    <div class="division-line"></div>
+    {{#each questions}}
+    <div class="user-questions">
+        <div class="user-questions-content">
+            <a href="/forum/questiondetailuser/{{id_pregunta}}">
+                <h4>{{titulo}}</h4>
+            </a>
+            <p>{{descripcion}}</p>
+            <div class="division-line-form"></div>
+            <div class="question-footer">
+                <h5>{{timeago fechaP}} por {{usuario}}
+                    <img src="/img/{{imagen}}" alt="imagen de usuario" class="small-user-image">
+                </h5>
+                
+                <div class="d-flex">
+                    <h5 class="categories">Categorias: <span>{{categorias}}</span> </h5>
+                    <h5>Respuestas: {{nrespuestas}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="division-line"></div>
+    {{else}}
+    <div class="container mx-auto">
+        <p class="empty-message">No se encontraron coincidencias.</p>
+    </div>
+    {{/each}}
+</div>
+{{else}} {{!-- MUESTRA SOLO LA INFORMACIÓN DETALLADA DE LA PREGUNTA SIN MOSTRAR LA CALIFICACION DE LAS RESPUESTAS CUANDO NO HAY USUARIO LOGEADO --}}
+{{> searchfilter}}
+<div class="container questions-cont">
+    <div class="division-line"></div>
+    {{#each questions}}
+    <div class="user-questions">
+        <div class="user-questions-content">
+            <a href="/forum/questiondetail/{{id_pregunta}}">
+                <h4>{{titulo}}</h4>
+            </a>
+            <p>{{descripcion}}</p>
+            <div class="division-line-form"></div>
+            <div class="question-footer">
+                <h5>{{timeago fechaP}} por {{usuario}}
+                    <img src="/img/{{imagen}}" alt="imagen de usuario" class="small-user-image">
+                </h5>
+                <div class="d-flex">
+                    <h5 class="categories">Categorias: <span>{{categorias}}</span> </h5>
+                    <h5>Respuestas: {{nrespuestas}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="division-line"></div>
+    {{else}}
+    <div class="container mx-auto">
+        <p class="empty-message">No se encontraron coincidencias.</p>
+    </div>
+    {{/each}}
+</div>
+{{/if}}

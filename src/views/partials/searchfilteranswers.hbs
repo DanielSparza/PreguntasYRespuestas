@@ -1,0 +1,30 @@
+<div class="pb-2">
+    <form action="/forum/questiondetail/{{qtn.id_pregunta}}" method="post">
+    <div class="row profile-filters">
+        <div class="col-ask-profile col-12 col-lg-4 col-md-4 col-sm-12">
+            <div class="answers-filter">
+                <h5>Filtrar respuestas</h5>
+            </div>
+        </div>
+        <div class="col-ask-profile col-12 col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group answers-filter">
+                <select class="form-control" name="calificacion" onchange="activatebtnA({{qtn.id_pregunta}});">
+                    <option value="" disabled selected>Por calificación</option>
+                    <option value="DESC">Con más calificación</option>
+                    <option value="ASC">Con menos calificación</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-ask-profile col-12 col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group answers-filter">
+                <select class="form-control" name="fechaR"  onchange="activatebtnA({{qtn.id_pregunta}});" id="date-filter-op">
+                    <option value="" disabled selected>Por fecha de publicación</option>
+                    <option value="DESC" id="DESC-item-a">Mas recientes</option>
+                    <option value="ASC" id="ASC-item-a">Mas antiguas</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <button class="btn hide-element" id="search-btn-{{qtn.id_pregunta}}"></button>
+    </form>
+</div>

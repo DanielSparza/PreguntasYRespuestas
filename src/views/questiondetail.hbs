@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="user-questions">
+        <div class="questions-content">
+            <h4>{{qtn.titulo}}</h4>
+            <div class="question-footer">
+                <h5>{{timeago qtn.fechaP}} por {{qtn.usuario}}
+                    <img src="/img/{{qtn.imagen}}" alt="imagen de usuario" class="small-user-image">
+                </h5>
+                <div class="d-flex">
+                    <h5 class="categories">Categorias: <span>{{qtn.categorias}}</span> </h5>
+                    <h5>Respuestas: {{qtn.nrespuestas}}</h5>
+                </div>
+            </div>
+            <p>{{qtn.descripcion}}</p>
+
+        </div>
+    </div>
+</div>
+
+<div class="container questions-label">
+    <h5>RESPUESTAS</h5>
+</div>
+
+<div class="container questions-cont">
+    <div class="division-line"></div>
+    {{#if user}}
+    {{> searchfilteranswersusr}}
+    {{else}}
+    {{> searchfilteranswers}}
+    {{/if}}
+    <div class="division-line"></div>
+    {{#each answer}}
+    <div class="user-questions" onmouseover="checkRB({{calificacion}}, {{id_respuesta}})">
+        <div class="user-questions-content">
+            <div class="question-total-rate">
+                <h5 class="answer-h5">Calficación total: {{calificacionR}}</h5>
+            </div>
+            <p class="answer-p">{{respuesta}}</p>
+            <div class="division-line-form"></div>
+            <div class="question-footer">
+                <h5 class="answer-h5">Respondido {{timeago fechaR}} por {{nombre}}
+                    <img src="/img/{{imagen}}" alt="imagen de usuario" class="small-user-image">
+                </h5>
+
+                <form action="/forum/rateanswer/{{id_respuesta}}" method="post">
+                    <div class="star-rate">
+                        <label>
+                            <input value="1" type="radio" name="rateR" onclick="rate(this)" id="1star{{id_respuesta}}">
+                            <span><i class="fa-solid fa-star" id="1star{{id_respuesta}}-icon"></i></span>
+                        </label>
+                        <label>
+                            <input value="2" type="radio" name="rateR" onclick="rate(this)" id="2star{{id_respuesta}}">
+                            <span><i class="fa-solid fa-star" id="2star{{id_respuesta}}-icon"></i></span>
+                        </label>
+                        <label>
+                            <input value="3" type="radio" name="rateR" onclick="rate(this)" id="3star{{id_respuesta}}">
+                            <span><i class="fa-solid fa-star" id="3star{{id_respuesta}}-icon"></i></span>
+                        </label>
+                        <label>
+                            <input value="4" type="radio" name="rateR" onclick="rate(this)" id="4star{{id_respuesta}}">
+                            <span><i class="fa-solid fa-star" id="4star{{id_respuesta}}-icon"></i></span>
+                        </label>
+                        <label>
+                            <input value="5" type="radio" name="rateR" onclick="rate(this)" id="5star{{id_respuesta}}">
+                            <span><i class="fa-solid fa-star" id="5star{{id_respuesta}}-icon"></i></span>
+                        </label>
+                    </div>
+                    <button class="btn" id="star{{id_respuesta}}-btn"></button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="division-line"></div>
+    {{else}}
+    <div class="container mx-auto">
+        <p class="empty-message">Aún no hay respuestas.</p>
+    </div>
+    {{/each}}
+
+</div>
+
+{{#if user}}
+<div class="container">
+    <div class="add-answer">
+        <div class="container">
+            <form action="/forum/questionadd/{{qtn.id_pregunta}}" method="post">
+                <div class="form-group">
+                    <label for="recipient-name" class="form-label">Responder pregunta</label>
+                    <textarea name="respuesta" rows="8" class="form-control"></textarea>
+                </div>
+                <div class="division-line-form"></div>
+                <div class="btn-footer">
+                    <button class="btn btn-general form-group">Publicar respuesta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="container mx-auto">
+    <p class="empty-message">Inicia sesión o registrate para publicar una respuesta a esta pregunta.</p>
+</div>
+{{/if}}

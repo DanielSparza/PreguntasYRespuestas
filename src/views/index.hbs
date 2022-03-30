@@ -1,0 +1,30 @@
+<div class="container container-info1">
+    <div class="info-landing">
+        <h1>BIENVENIDO A LA MEJOR PLATAFORMA DE PREGUNTAS Y RESPUESTAS</h1>
+        <h4>CONSULTA TUS DUDAS Y RESPONDE A LAS DE OTROS USUARIOS</h4>
+    </div>
+</div>
+<div class="container-info2">
+    <div class="container">
+        <div class="info-landing">
+            <h1>BUSCA POR TEMAS O CATEGORIAS Y FILTRA POR LAS PREGUNTAS CON MAS RESPUESTAS O POR FECHA</h1>
+        </div>
+    </div>
+</div>
+{{#if user}}
+<div class="container-info3">
+    <div class="container">
+        <div class="info-landing">
+            <h1>HOLA < <span id="user-write">{{user.nombre}}</span> /> :) </h1>
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="container-info3">
+    <div class="container">
+        <div class="info-landing">
+            <h1>UNETE AHORA A NUESTRA COMUNIDAD O INICIA SESIÓN SI YA TIENES UNA CUENTA</h1>
+        </div>
+    </div>
+</div>
+{{/if}}

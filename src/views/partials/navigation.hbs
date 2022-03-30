@@ -1,0 +1,39 @@
+<header class="header fixed-top">
+  <nav class="nav">
+    <a class="navbar-brand" href="/">Q&A</a>
+  
+    <form class="form-group" action="/" method="post">
+      <div class="input-group-prepend search-icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <input type="text" class="search-input" name="busqueda" value="{{bqd}}">
+      <div class="input-group-append">
+        <button class="btn btn-outline-search" id="btn-formnav">Buscar</button>
+      </div>
+    </form>
+
+    <button class="nav-toggle">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <ul class="nav-menu">
+      {{#if user}}
+      <li class="nav-menu-item">
+        <a href="/profile" class="nav-menu-link btn btn-outline">
+          <i class="fa-solid fa-user mr-2" title="Mi Perfil"></i> Mi perfil
+        </a>
+      </li>
+      <li class="nav-menu-item">
+        <a href="/logout" class="nav-menu-link btn btn-outline">Cerrar sesión</a>
+      </li>
+      {{else}}
+      <li class="nav-menu-item">
+        <a href="/signin" class="nav-menu-link btn btn-outline">Iniciar sesión</a>
+      </li>
+      <li class="nav-menu-item">
+        <a href="/signup" class="nav-menu-link btn btn-outline">Registrarme</a>
+      </li>
+      {{/if}}
+    </ul>
+  </nav>
+</header>

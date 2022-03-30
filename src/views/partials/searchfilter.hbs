@@ -1,0 +1,36 @@
+<div class="container filter-cont filter-cont-index">
+    <form action="/" method="post">
+    <div class="row profile-filters">
+        <div class="col-ask-profile col-12 col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group answers-filter">
+                <select class="form-control" name="respuestas" onchange="activatebtn()">
+                    <option value="" hidden>Por número de respuestas</option>
+                    <option value="">Todas</option>
+                    <option value="mas">Con mas respuestas</option>
+                    <option value="menos">Con menos respuestas</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-ask-profile col-12 col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group answers-filter">
+                <select class="form-control" name="fecha"  onchange="activatebtn(this);" id="date-filter-op">
+                    <option value="" disabled selected>Por fecha de publicación</option>
+                    <option {{#xif fdate "DESC"}} selected {{/xif}} value="DESC" id="DESC-item">Mas recientes</option>
+                    <option {{#xif fdate "ASC"}} selected {{/xif}} value="ASC" id="ASC-item">Mas antiguas</option>
+                </select>
+            </div>
+        </div>
+        {{!-- <div class="col-ask-profile col-12 col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group answers-filter">
+                <input type="date" class="datepk" name="filter-date">
+            </div>
+        </div> --}}
+        <div class="col-ask-profile col-12 col-lg-4 col-md-4 col-sm-12">
+            <div class="answers-filter">
+                <h5 onmouseover="selectoptn('{{fdate}}');">Resultados: {{np}}</h5>
+            </div>
+        </div>
+    </div>
+    <button class="btn hide-element" id="search-btn"></button>
+    </form>
+</div>

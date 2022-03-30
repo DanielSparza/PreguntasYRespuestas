@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="row profile-desk">
+        <div class="col-img-profile col-12 col-lg-3 col-md-3 col-sm-12">
+            <img class="img-user" src="/img/{{user.imagen}}" alt="imagen de usuario">
+        </div>
+        <div class="col-info-profile col-12 col-lg-6 col-md-6 col-sm-12">
+            <h4>{{user.nombre}}</h4>
+            <h5>Usuario: {{user.usuario}}</h5>
+            <h5>Email: {{user.email}}</h5>
+            <div class="user-estadistics">
+                <h5>Preguntas realizadas: {{userQ.preguntas}}</h5>
+                <h5>Respuestas realizadas: {{userA.respuestas}}</h5>
+            </div>
+        </div>
+        <div class="col-edit-profile col-12 col-lg-3 col-md-3 col-sm-12">
+            <button class="btn btn-general2" data-toggle="modal" data-target="#users-edit-modal{{id_usuario}}"><i
+                    class="fa-solid fa-pencil mr-2"></i>Editar perfil</button>
+            {{> modals/useredit }}
+        </div>
+    </div>
+</div>
+
+<div class="container filter-cont">
+    <div class="row profile-filters">
+        <div class="col-ask-profile col-12 col-lg-3 col-md-3 col-sm-12">
+            <button class="btn btn-general2" data-toggle="modal" data-target="#users-ask-modal"><i
+                    class="fa-solid fa-question mr-2"></i>Hacer pregunta</button>
+            {{> modals/addquestion }}
+        </div>
+        <div class="col-ask-profile col-12 col-lg-2 col-md-2 col-sm-12">
+            <div class="answers-filter">
+                <h5>Filtrar</h5>
+            </div>
+        </div>
+        <div class="col-ask-profile col-12 col-lg-7 col-md-7 col-sm-12">
+            <form action="/profile" method="post">
+                <div class="row">
+                    <div class="q-filter-select col-12 col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group answers-filter">
+                            <select class="form-control" name="respuestas" onchange="activatebtnP();">
+                                <option value="" disabled selected>Por respuestas</option>
+                                <option value="DESC">Con más respuestas</option>
+                                <option value="ASC">Con menos respuestas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="q-filter-select col-12 col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-group answers-filter">
+                            <select class="form-control" name="fechaP" onchange="activatebtnP();" id="date-filter-op">
+                                <option value="" disabled selected>Por fecha de publicación</option>
+                                <option value="DESC" id="DESC-item-a">Mas recientes</option>
+                                <option value="ASC" id="ASC-item-a">Mas antiguas</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn hide-element" id="search-btn-profile"></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container questions-label">
+    <h5>MIS PREGUNTAS</h5>
+</div>
+
+{{#if user}}
+<div class="container questions-cont">
+    <div class="division-line"></div>
+    {{#each qData}}
+    <div class="user-questions">
+        <div class="user-questions-content">
+            <a href="/forum/questiondetailuser/{{id_pregunta}}">
+                <h4>{{titulo}}</h4>
+            </a>
+            <p>{{descripcion}}</p>
+            <div class="division-line-form"></div>
+            <div class="question-footer">
+                <h5>{{timeago fechaP}} por {{usuario}}</h5>
+                <div class="d-flex">
+                    <h5 class="categories">Categorias: <span>{{categorias}}</span> </h5>
+                    <h5>Respuestas: {{nrespuestas}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="division-line"></div>
+    {{else}}
+    <div class="container mx-auto">
+        <p class="empty-message">Aún no hay preguntas.</p>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
